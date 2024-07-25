@@ -14,8 +14,4 @@ class Chat extends Model
         $this->belongsToMany(User::class);
     }
 
-    public function user()
-    {
-        $this->belongsToMany(User::class);
-    }
 }

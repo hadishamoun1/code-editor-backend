@@ -21,7 +21,7 @@ class MessageFactory extends Factory
         return [
             'user_id' => User::factory(),
             'chat_id' => Chat::factory(),
-            'content' => fake()->text(),
+            'message' => fake()->text(),
         ];
     }
 }
