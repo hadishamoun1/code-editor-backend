@@ -9,8 +9,15 @@ class Code extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'title',
+        'content',
+        'language',
+    ];
+
     public function user()
     {
-        $this->belongsTo(user::class);
+        $this->belongsTo(User::class);
     }
 }
