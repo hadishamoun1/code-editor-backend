@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('codes', function (Blueprint $table) {
             $table->id(); // primary key
-            $table->foreignId('user_id')->constrained('users'); // foreign key for table users
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade'); // foreign key for table users
             $table->string('title',255); // varchar(255)
             $table->text('content'); // text
             $table->string('language', 50); // varchar(50)
