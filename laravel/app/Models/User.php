@@ -44,4 +44,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function hasCode() 
+    {
+         $this->hasMany(Code::class);
+    }
+
+    public function hasChat() 
+    {
+         $this->belongsToMany(Chat::class);
+    }
+
 }
