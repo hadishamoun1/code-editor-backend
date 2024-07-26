@@ -9,6 +9,12 @@ class Chat extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_1_id',
+        'user_2_id',
+        
+    ];
+
     public function users()
     {
         $this->belongsToMany(User::class);
