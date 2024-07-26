@@ -17,9 +17,10 @@ class ChatFactory extends Factory
      */
     public function definition(): array
     {
+        $users = User::inRandomOrder()->take(2)->get();
         return [
-            'User_1_id' => User::factory(),   // This creates a new User each time
-            'User_2_id' => User::factory(), // This creates a new User each time
+            'User_1_id' => $users->get(0)->id,
+            'User_2_id' => $users->get(1)->id,
         ];
     }
 }

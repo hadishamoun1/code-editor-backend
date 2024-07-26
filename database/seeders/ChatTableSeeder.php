@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Chat;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class ChatTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Chat::factory(20)->create();
     }
 }

@@ -23,12 +23,11 @@ Route::delete('/code/{id}', [CodeController::class, 'destroy']);
 
 
 Route::get('/message/{chatId}', [MessageController::class, 'getAllMessages']);
-Route::post('/message/{chatId}', [MessageController::class,'createMessage']);
-Route::put('/message/{id}', [MessageController::class,'updateMessage']);
+Route::post('/message', [MessageController::class,'createMessage']);
+Route::put('/message/{msgId}', [MessageController::class,'updateMessage']);
 Route::delete('/message/{id}', [MessageController::class,'deleteMessage']);
 
 
-Route::get('/chat/{userid}', [ChatController::class, 'getUserChat']);
+Route::get('/chat/{userid}', [ChatController::class, 'getUserChats']);
 Route::post('/chat', [ChatController::class,'createChat']);
-Route::put('/chat/{id}', [ChatController::class,'updateChat']);
 Route::delete('/chat/{id}', [ChatController::class,'deleteChat']);
