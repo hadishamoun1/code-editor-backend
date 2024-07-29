@@ -18,6 +18,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 
 
+
 Route::get('/code', [CodeController::class, 'index']);
 Route::get('/code/{id}', [CodeController::class, 'show']);
 Route::post('/code', [CodeController::class, 'store']);
@@ -41,10 +42,10 @@ Route::get('/profile', [AuthController::class, 'profile']);
 
 
 
-Route::post('/execute', [CodeExecutionController::class, 'execute']);
+
 
 Route::middleware('checkAuth')->group(function () {
-    Route::get('/users', [AuthController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
     
 });
