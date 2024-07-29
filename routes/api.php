@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CodeExecutionController;
 
 
 //Route::get('/users', [UserController::class, 'index']);
@@ -36,8 +37,14 @@ Route::delete('/chat/{id}', [ChatController::class,'deleteChat']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/profile', [AuthController::class, 'profile']);
+
+
+
+Route::post('/execute', [CodeExecutionController::class, 'execute']);
 
 Route::middleware('checkAuth')->group(function () {
     Route::get('/users', [AuthController::class, 'index']);
-    // Add more routes that require authentication here...
+    Route::post('/logout', [AuthController::class, 'logout']);
+    
 });

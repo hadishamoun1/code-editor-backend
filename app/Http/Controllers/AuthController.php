@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -92,12 +93,26 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function profile(Request $request)
-    {
-        // Retrieve the authenticated user
-        $user = Auth::user();
 
-        // Return the user's profile information
-        return response()->json($user);
-    }
+     public function logout(Request $request)
+     {
+         try {
+             // Invalidate the token
+             JWTAuth::invalidate(JWTAuth::getToken());
+     
+             return response()->json([
+                 'status' => 'success',
+                 'message' => 'Successfully logged out',
+             ]);
+         } catch (\Exception $e) {
+             return response()->json([
+                 'status' => 'error',
+                 'message' => 'Failed to log out',
+                 'error' => $e->getMessage()
+             ], 500);
+         }
+     }
+     
+ 
+     
 }
