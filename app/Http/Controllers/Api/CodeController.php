@@ -10,11 +10,21 @@ class CodeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-         return Code::all();
          
+        $userId = $request->query('user_id');
+
+        if ($userId) {
+            
+            $codes = Code::where('user_id', $userId)->get();
+            return response()->json($codes);
+        }
+
+        return Code::all();
     }
+         
+    
 
     /**
      * Store a newly created resource in storage.
