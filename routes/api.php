@@ -45,7 +45,18 @@ Route::get('/profile', [AuthController::class, 'profile']);
 
 
 Route::middleware('checkAuth')->group(function () {
-    Route::get('/users', [UserController::class, 'index']);
+   
     Route::post('/logout', [AuthController::class, 'logout']);
+   
     
 });
+
+
+Route::middleware('admin')->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+   
+    
+});
+
+

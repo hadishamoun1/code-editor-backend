@@ -24,8 +24,9 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users', // Ensure unique email
+            'email' => 'required|string|email|unique:users', 
             'password' => 'required|string|min:8',
+            'role' => 'required|string|in:user,admin',
         ]);
 
         if ($validator->fails()) {
@@ -36,6 +37,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role, 
         ]);
 
 
@@ -43,7 +45,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Authenticate the user and return a JWT token if valid credentials are provided.
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -62,13 +64,13 @@ class AuthController extends Controller
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        $user = Auth::user(); // Get the authenticated user
+        $user = Auth::user(); 
 
         return $this->respondWithToken($token, $user);
     
     }
     /**
-     * Respond with a JWT token.
+     * 
      *
      * @param  string  $token
      * @return \Illuminate\Http\JsonResponse
@@ -80,10 +82,11 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60,
             'user' => [
-                'id' => $user->id, // Include the user ID
+                'id' => $user->id, 
                 'name' => $user->name,
                 'email' => $user->email,
                 'password' => $user->password,
+                'role' => $user->role,
             ]
         ]);
     }
