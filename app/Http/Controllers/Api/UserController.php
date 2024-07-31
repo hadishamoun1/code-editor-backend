@@ -12,13 +12,13 @@ class UserController extends Controller
     // Display a listing of the resource.
     public function index()
     {
-        return User::all();
+        return response()->json(["users" => User::all()],200);
     }
 
     // Display the specified resource.
     public function show($id)
     {
-        return User::findOrFail($id);
+        return response()->json(["user" =>User::findOrFail($id)],200);
     }
 
     // Store a newly created resource in storage.

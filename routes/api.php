@@ -29,7 +29,7 @@ Route::post('/message', [MessageController::class,'createMessage']);
 Route::put('/message/{msgId}', [MessageController::class,'updateMessage']);
 Route::delete('/message/{id}', [MessageController::class,'deleteMessage']);
 
-
+Route::get('/users', [UserController::class, 'index']);
 Route::get('/chat/{userid}', [ChatController::class, 'getUserChats']);
 Route::post('/chat', [ChatController::class,'createChat']);
 Route::delete('/chat/{id}', [ChatController::class,'deleteChat']);
@@ -38,6 +38,6 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('checkAuth')->group(function () {
-    Route::get('/users', [AuthController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index']);
     // Add more routes that require authentication here...
 });
