@@ -16,10 +16,8 @@ class MessageController extends Controller
             "user_id" => "required|exists:users,id|numeric",
             "message" => "required|string",
         ]);
-        Message::create($validated_data);
-        return response()->json([
-            "message" => "Message added successfully"
-        ], 201);
+        return Message::create($validated_data);
+         
     }
     public function getAllMessages($chatId)
     {

@@ -31,7 +31,7 @@ Route::post('/message', [MessageController::class,'createMessage']);
 Route::put('/message/{msgId}', [MessageController::class,'updateMessage']);
 Route::delete('/message/{id}', [MessageController::class,'deleteMessage']);
 
-
+Route::get('/users', [UserController::class, 'index']);
 Route::get('/chat/{userid}', [ChatController::class, 'getUserChats']);
 Route::post('/chat', [ChatController::class,'createChat']);
 Route::delete('/chat/{id}', [ChatController::class,'deleteChat']);

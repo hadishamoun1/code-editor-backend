@@ -23,16 +23,24 @@ class ChatController extends Controller
         ]);
 
 
-        $existingChat = Chat::where('user_1_id', $validated['user_1_id'])->where('user_2_id', $validated['user_2_id'])->first();
-        if ($existingChat) {
+        $existingChat1 = Chat::where('user_1_id', $validated['user_1_id'])->where('user_2_id', $validated['user_2_id'])->first();
+        $existingChat2 = Chat::where('user_1_id', $validated['user_1_id'])->where('user_2_id', $validated['user_2_id'])->first();
+        if ($existingChat1 ) {
             return response()->json([
-                "message" => "Chat already exists",
-            ], 200);
+                "message" => $existingChat1,
+            ], 302);
+        }
+
+        if ($existingChat2 ) {
+            return response()->json([
+                "message" => $existingChat2,
+            ], 302);
         }
 
         $chat = Chat::create($validated);
         return response()->json([
             "message" => "Chat created successfully",
+            'chat' => $chat
         ], 201);
     }
     public function deleteChat($id)
