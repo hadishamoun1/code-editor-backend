@@ -11,7 +11,7 @@ use App\Http\Controllers\CodeExecutionController;
 
 
 //Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
+
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
@@ -45,8 +45,9 @@ Route::get('/profile', [AuthController::class, 'profile']);
 
 
 Route::middleware('checkAuth')->group(function () {
-   
+    Route::get('/users', [UserController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
    
     
 });
@@ -55,6 +56,8 @@ Route::middleware('checkAuth')->group(function () {
 Route::middleware('admin')->group(function () {
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/bulk-import', [UserController::class, 'bulkImport']);
+
    
     
 });
